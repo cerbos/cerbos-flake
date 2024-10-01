@@ -8,7 +8,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        version = "0.38.1";
+        version = "0.39.0";
         commit = if (builtins.hasAttr "rev" self) then self.rev else "unknown";
       in
       {
@@ -21,7 +21,7 @@
               repo = "cerbos";
               rev = "v${version}";
               # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.38.1`
-              sha256 = "sha256-Ku6khVn+lWLk03IhG9tpJpK/mEwt9/0UV+BfhSJ7wvY=";
+              sha256 = "sha256-r6wIBz1XUDjmf8kuM+zev/yrf6m1c87oOMSQBc90pfg=";
             };
 
             subPackages = [
