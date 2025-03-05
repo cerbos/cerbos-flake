@@ -8,20 +8,20 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        version = "0.40.0";
+        version = "0.41.0";
         commit = if (builtins.hasAttr "rev" self) then self.rev else "unknown";
       in
       {
         packages = rec {
-          cerbos = pkgs.buildGo123Module {
+          cerbos = pkgs.buildGo124Module {
             name = "cerbos";
 
             src = pkgs.fetchFromGitHub {
               owner = "cerbos";
               repo = "cerbos";
               rev = "v${version}";
-              # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.40.0`
-              sha256 = "sha256-/ki6eX+kOR9muorCt6d41QVnt8iwyOxqwTgBN/vpiaU=";
+              # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.41.0`
+              sha256 = "sha256-7o9CoDgU4ewYHJ19/jU2UXOiSjIi7OI+L5dzOWTRVYM=";
             };
 
             subPackages = [
@@ -31,9 +31,8 @@
 
             env = {
               GOWORK = "off";
+              CGO_ENABLED = 0;
             };
-
-            CGO_ENABLED = 0;
 
             ldflags = [
                 "-s -w"
@@ -49,7 +48,7 @@
                 maintainers = with maintainers; [ "charithe" ];
             };
 
-            vendorHash = "sha256-ul+WOuDick0WH+e4trtTyt6JViX9rlfS/DBDuN2oqUk=";
+            vendorHash = "sha256-+scMMTL5GGIhGUX6YfmbHy3UInO4y0BIMNvNqiFQZ4I=";
           };
           default = cerbos;
         };
