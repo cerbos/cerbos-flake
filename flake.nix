@@ -1,27 +1,27 @@
 {
   description = "Scalable external authorization solution for your software";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        version = "0.46.0";
+        version = "0.48.0";
         commit = if (builtins.hasAttr "rev" self) then self.rev else "unknown";
       in
       {
         packages = rec {
-          cerbos = pkgs.buildGo124Module {
+          cerbos = pkgs.buildGo125Module {
             name = "cerbos";
 
             src = pkgs.fetchFromGitHub {
               owner = "cerbos";
               repo = "cerbos";
               rev = "v${version}";
-              # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.46.0`
-              sha256 = "sha256-N2TksxcqDvimZoqTGq+3lsmKq7PYIJuQ4XjLWQOyOwI=";
+              # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.48.0`
+              sha256 = "sha256-xOAIMEy8srG1X/pmhHR0Aq+/8yQKwG6gXTUV/1hozzs=";
             };
 
             subPackages = [
@@ -48,7 +48,7 @@
                 maintainers = with maintainers; [ "charithe" ];
             };
 
-            vendorHash = "sha256-M+udwLj4/uiB0DJCTZoMs8l3RT5WWckhYih2jJBBQeg=";
+            vendorHash = "sha256-AIOkWLlysUOPLdYvNbrLzNCW53I93TBHqDh16duX4EI=";
           };
           default = cerbos;
         };
