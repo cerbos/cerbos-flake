@@ -8,7 +8,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        version = "0.48.0";
+        version = "0.49.0";
         commit = if (builtins.hasAttr "rev" self) then self.rev else "unknown";
       in
       {
@@ -20,8 +20,8 @@
               owner = "cerbos";
               repo = "cerbos";
               rev = "v${version}";
-              # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.48.0`
-              sha256 = "sha256-xOAIMEy8srG1X/pmhHR0Aq+/8yQKwG6gXTUV/1hozzs=";
+              # Obtain with `nix flake prefetch github:cerbos/cerbos/v0.49.0`
+              sha256 = "sha256-XVK/Y5ml6dp8qq9mPWEidkLSSwwyufbugNjtjdQhgqM=";
             };
 
             subPackages = [
@@ -48,7 +48,7 @@
                 maintainers = with maintainers; [ "charithe" ];
             };
 
-            vendorHash = "sha256-AIOkWLlysUOPLdYvNbrLzNCW53I93TBHqDh16duX4EI=";
+            vendorHash = "sha256-fAvIfVe6OgkUR0021V7NKfuW0kwW7y4ViOjCuULW5ro=";
           };
           default = cerbos;
         };
